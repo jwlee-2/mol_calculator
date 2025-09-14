@@ -224,8 +224,10 @@ else:
         </svg>
     </div>
     """
+svg_content
 
 st.markdown(svg_content, unsafe_allow_html=True)
+
 
 
 
