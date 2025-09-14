@@ -199,7 +199,7 @@ for i, t in particle_rend:
 
 # ===== 렌더링 (입자 포함) =====
 
-# if wave_path == "":
+if wave_path == "":
     svg_content = f"""
     <div style='position:relative; width:{beaker_width}px; height:{scaled_height}px; margin: 0 auto;'>
         <svg width="{beaker_width}" height="{scaled_height}" viewBox="0 0 {beaker_width} {scaled_height}" xmlns="http://www.w3.org/2000/svg">
@@ -211,7 +211,7 @@ for i, t in particle_rend:
         </svg>
     </div>
     """
-# else:
+else:
     svg_content = f"""
     <div style='position:relative; width:{beaker_width}px; height:{scaled_height}px; margin: 0 auto;'>
         <svg width="{beaker_width}" height="{scaled_height}" viewBox="0 0 {beaker_width} {scaled_height}" xmlns="http://www.w3.org/2000/svg">
@@ -226,6 +226,7 @@ for i, t in particle_rend:
     """
 
 st.markdown(svg_content, unsafe_allow_html=True)
+
 
 
 
