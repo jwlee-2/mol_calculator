@@ -165,6 +165,7 @@ if water_height >= wave_threshold:
 else:
     wave_path = ""
 
+water_y+5 > water_y + water_height-5
 # ===== 입자 SVG 생성 (수정된 부분) =====
 MAX_PARTICLES = 100
 particles_svg = ""
@@ -183,7 +184,7 @@ for i, t in particle_rend:
     
     for _ in range(count):
         cx = random.randint(5, beaker_width-5)
-        cy = random.randint(water_y+5, water_y + water_height-5)
+        cy = random.randint(water_height * 0.05 + water_y,water_height * 0.95 water_y)
         r = random.randint(least_r, least_r + 1)
         dur = random.uniform(2, 6)
         delta = random.randint(5, 15)
@@ -225,3 +226,4 @@ else:
     """
 
 st.markdown(svg_content, unsafe_allow_html=True)
+
