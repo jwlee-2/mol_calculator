@@ -197,17 +197,31 @@ for i, t in particle_rend:
         particles_svg += f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="orange"><animate attributeName="cy" values="{cy_start};{cy_up};{cy_down};{cy_end}" dur="{dur}s" repeatCount="indefinite"/></circle>'
 
 # ===== 렌더링 (입자 포함) =====
-svg_content = f"""
-<div style='position:relative; width:{beaker_width}px; height:{scaled_height}px; margin: 0 auto;'>
-    <svg width="{beaker_width}" height="{scaled_height}" viewBox="0 0 {beaker_width} {scaled_height}" xmlns="http://www.w3.org/2000/svg">
-        <!-- 비커 외곽선 -->
-        <path d="M0,0 L0,{scaled_height} L{beaker_width},{scaled_height} L{beaker_width},0" fill="none" stroke="black" stroke-width="3"/>
-        <!-- 물 직사각형 -->
-        <rect x="0" y="{water_y}" width="{beaker_width}" height="{water_height}" fill="rgba(0,119,255,0.25)"/>
-        {wave_path}
-        {particles_svg}
-    </svg>
-</div>
-"""
+
+if wave_path == "":
+    svg_content = f"""
+    <div style='position:relative; width:{beaker_width}px; height:{scaled_height}px; margin: 0 auto;'>
+        <svg width="{beaker_width}" height="{scaled_height}" viewBox="0 0 {beaker_width} {scaled_height}" xmlns="http://www.w3.org/2000/svg">
+            <!-- 비커 외곽선 -->
+            <path d="M0,0 L0,{scaled_height} L{beaker_width},{scaled_height} L{beaker_width},0" fill="none" stroke="black" stroke-width="3"/>
+            <!-- 물 직사각형 -->    
+            <rect x="0" y="{water_y}" width="{beaker_width}" height="{water_height}" fill="rgba(0,119,255,0.25)"/>
+            {particles_svg}
+        </svg>
+    </div>
+    """
+else:
+    svg_content = f"""
+    <div style='position:relative; width:{beaker_width}px; height:{scaled_height}px; margin: 0 auto;'>
+        <svg width="{beaker_width}" height="{scaled_height}" viewBox="0 0 {beaker_width} {scaled_height}" xmlns="http://www.w3.org/2000/svg">
+            <!-- 비커 외곽선 -->
+            <path d="M0,0 L0,{scaled_height} L{beaker_width},{scaled_height} L{beaker_width},0" fill="none" stroke="black" stroke-width="3"/>
+            <!-- 물 직사각형 -->
+            <rect x="0" y="{water_y}" width="{beaker_width}" height="{water_height}" fill="rgba(0,119,255,0.25)"/>
+            {wave_path}
+            {particles_svg}
+        </svg>
+    </div>
+    """
 
 st.markdown(svg_content, unsafe_allow_html=True)
