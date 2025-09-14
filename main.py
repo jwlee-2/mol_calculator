@@ -184,7 +184,7 @@ for i, t in particle_rend:
     
     for _ in range(count):
         cx = random.randint(5, beaker_width-5)
-        cy = random.randint(water_height * 0.05 + water_y,water_height * 0.95 + water_y)
+        cy = random.random(water_height * 0.05 + water_y,water_height * 0.95 + water_y)
         r = random.randint(least_r, least_r + 1)
         dur = random.uniform(2, 6)
         delta = random.randint(5, 15)
@@ -226,5 +226,6 @@ else:
     """
 
 st.markdown(svg_content, unsafe_allow_html=True)
+
 
 
