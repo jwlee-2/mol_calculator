@@ -39,6 +39,59 @@ st.markdown("""
 
 st.title("몰농도 계산기")
 
+# ...existing code...
+
+# 사이드바 슬라이드 토글 버튼 및 CSS/JS 추가
+st.markdown("""
+<style>
+[data-testid="stSidebar"] {
+    min-width: 380px !important;
+    max-width: 380px !important;
+    position: fixed !important;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    z-index: 10000;
+    background: white;
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+}
+[data-testid="stSidebar"].sidebar-hidden {
+    transform: translateX(-100%);
+}
+#sidebar-toggle-btn {
+    position: fixed;
+    top: 18px;
+    left: 0px;
+    z-index: 11000;
+    background: #0077ff;
+    color: white;
+    border-radius: 0 6px 6px 0;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.08);
+}
+@media (max-width: 600px) {
+    [data-testid="stSidebar"] {
+        min-width: 80vw !important;
+        max-width: 80vw !important;
+    }
+}
+</style>
+<script>
+function toggleSidebar() {
+    const sidebar = window.parent.document.querySelector('[data-testid="stSidebar"]');
+    if (sidebar) {
+        sidebar.classList.toggle('sidebar-hidden');
+    }
+}
+</script>
+<button id="sidebar-toggle-btn" onclick="toggleSidebar()">☰</button>
+""", unsafe_allow_html=True)
+
+
 # ===== 입력값 =====
 with st.sidebar:
     st.markdown("<h2 style='margin: 1.5px;'> 몰농도 계산기</h2>", unsafe_allow_html=True)
@@ -198,6 +251,7 @@ svg_content = f"""
 
 
 st.markdown(svg_content, unsafe_allow_html=True)
+
 
 
 
