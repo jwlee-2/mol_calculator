@@ -39,57 +39,19 @@ st.markdown("""
 
 st.title("몰농도 계산기")
 
-# ...existing code...
-
-# 사이드바 슬라이드 토글 버튼 및 CSS/JS 추가
 st.markdown("""
 <style>
-[data-testid="stSidebar"] {
-    min-width: 380px !important;
-    max-width: 380px !important;
-    position: fixed !important;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    z-index: 10000;
-    background: white;
-    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
-    box-shadow: 2px 0 8px rgba(0,0,0,0.08);
-}
-[data-testid="stSidebar"].sidebar-hidden {
-    transform: translateX(-100%);
-}
-#sidebar-toggle-btn {
+/* 사이드바 토글 버튼을 왼쪽 상단에 고정 */
+[data-testid="collapsedControl"] {
     position: fixed;
-    top: 18px;
-    left: 0px;
-    z-index: 11000;
-    background: #0077ff;
-    color: white;
-    border-radius: 0 6px 6px 0;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 18px;
-    box-shadow: 1px 1px 6px rgba(0,0,0,0.08);
-}
-@media (max-width: 600px) {
-    [data-testid="stSidebar"] {
-        min-width: 80vw !important;
-        max-width: 80vw !important;
-    }
+    top: 10px;     /* 위에서 10px 정도 떨어뜨리기 */
+    left: 0px;     /* 왼쪽 끝 */
+    transform: none !important; /* 기본 중앙 정렬 제거 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
 }
 </style>
-<script>
-function toggleSidebar() {
-    const sidebar = window.parent.document.querySelector('[data-testid="stSidebar"]');
-    if (sidebar) {
-        sidebar.classList.toggle('sidebar-hidden');
-    }
-}
-</script>
-<button id="sidebar-toggle-btn" onclick="toggleSidebar()">☰</button>
 """, unsafe_allow_html=True)
+
 
 
 # ===== 입력값 =====
@@ -180,8 +142,7 @@ def format_mass(mass):
     return " ".join(result_parts) if result_parts else "0 g"
 
 # 출력
-st.subheader("필요한 용질의 질량:")
-st.subheader(f"{format_mass(required_mass)}")
+st.subheader(f"필요한 용질의 질량: {format_mass(required_mass)}")
 
 # ===== 렌더링 =====
 wave_threshold = 50  # 물 높이가 이 이상일 때만 출렁임 표시
@@ -249,12 +210,4 @@ svg_content = f"""
 </div>
 """
 
-
 st.markdown(svg_content, unsafe_allow_html=True)
-
-
-
-
-
-
-
