@@ -127,7 +127,8 @@ def format_mass(mass):
     return " ".join(result_parts) if result_parts else "0 g"
 
 # 출력
-st.subheader(f"필요한 용질의 질량: \n <h1>{format_mass(required_mass)}</h1>")
+st.subheader(f"필요한 용질의 질량:")
+st.subheader(f"format_mass(required_mass)}")
 
 # ===== 렌더링 =====
 wave_threshold = 50  # 물 높이가 이 이상일 때만 출렁임 표시
@@ -197,6 +198,7 @@ svg_content = f"""
 
 
 st.markdown(svg_content, unsafe_allow_html=True)
+
 
 
 
